@@ -6,9 +6,9 @@ package com.example.winfo
     Kotlin Coroutines - синхронизация потоков
  */
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,5 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val textViewIsDead = findViewById<TextView>(R.id.textViewIsDead)
         textViewIsDead.text = "It means I am working."
+
+        val sex = "no"
     }
 }
