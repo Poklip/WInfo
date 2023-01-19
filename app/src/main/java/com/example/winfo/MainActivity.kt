@@ -1,8 +1,14 @@
 package com.example.winfo
 
-import androidx.appcompat.app.AppCompatActivity
+/*
+    Android Lifecycle - общие библиотеки
+    Retrofit2 - библиотека для выхода в интернет
+    Kotlin Coroutines - синхронизация потоков
+ */
+
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,5 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val textViewIsDead = findViewById<TextView>(R.id.textViewIsDead)
         textViewIsDead.text = "It means I am working."
+
+        val sex = "no"
     }
 }
