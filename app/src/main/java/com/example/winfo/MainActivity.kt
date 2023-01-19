@@ -1,5 +1,11 @@
 package com.example.winfo
 
+/*
+    Android Lifecycle - общие библиотеки
+    Retrofit2 - библиотека для выхода в интернет
+    Kotlin Coroutines - синхронизация потоков
+ */
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
