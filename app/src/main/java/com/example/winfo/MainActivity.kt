@@ -1,7 +1,9 @@
 package com.example.winfo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -14,5 +16,11 @@ class MainActivity : AppCompatActivity() {
 
         val textViewIsDead = findViewById<TextView>(R.id.textViewIsDead)
         textViewIsDead.text = "It means I am working."
+
+        val buttonToWeatherScreen = findViewById<Button>(R.id.btnWeather)
+        buttonToWeatherScreen.setOnClickListener {
+            val intent = Intent(this, WeatherActivity::class.java).also { startActivity(it) }
+        }
+
     }
 }
