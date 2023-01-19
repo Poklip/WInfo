@@ -28,5 +28,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.978" />
 
+    <Button
+        android:id="@+id/btnWeather"
+        android:text="Open Weather."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewIsAlive"
+        app:layout_constraintStart_toStartOf="@+id/textViewIsAlive"
+        app:layout_constraintTop_toBottomOf="@id/textViewIsAlive" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
