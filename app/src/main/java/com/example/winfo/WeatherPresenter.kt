@@ -2,8 +2,8 @@ package com.example.winfo
 
 class WeatherPresenter {
 
-    fun getWeather(temperature: String) : String {
-        return temperature
+    fun getWeather(temperature: Int): String {
+        return "$temperature C"
     }
 
 }
