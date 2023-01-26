@@ -20,7 +20,7 @@ class WeatherActivity : AppCompatActivity() {
 
         val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
         tvTemperature.text =
-            weatherPresenter.getWeather(temperatureGenerator()) //обращение к гетвезер
+            weatherPresenter.getWeather(temperatureGenerator()) //обращение к WeatherRepresenter.
 
         val btnBack = findViewById<Button>(R.id.btnToMain)
         btnBack.setOnClickListener {
