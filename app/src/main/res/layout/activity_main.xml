@@ -38,5 +38,6 @@
         app:layout_constraintStart_toStartOf="@+id/textViewIsAlive"
         app:layout_constraintTop_toBottomOf="@id/textViewIsAlive" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
