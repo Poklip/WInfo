@@ -1,5 +1,5 @@
 package com.example.winfo
-
+//SECOND SCREEN WITH TEMPERATURE INFO
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -8,8 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
 fun temperatureGenerator(): Int {
-    var currentTempC = Random.nextInt(-30, 31)
-    return currentTempC
+    return Random.nextInt(-30, 31)
 }
 class WeatherActivity : AppCompatActivity() {
 
@@ -21,7 +20,7 @@ class WeatherActivity : AppCompatActivity() {
 
         val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
         tvTemperature.text =
-            weatherPresenter.getWeather(temperatureGenerator()) //пример перезапуска активити при повороте экрана
+            weatherPresenter.getWeather(temperatureGenerator()) //обращение к WeatherRepresenter.
 
         val btnBack = findViewById<Button>(R.id.btnToMain)
         btnBack.setOnClickListener {
