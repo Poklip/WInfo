@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val textViewIsAlive = findViewById<TextView>(R.id.textViewIsAlive)
-        textViewIsAlive.text = "I am aliiiive in code!"
+        textViewIsAlive.text = "Say no more..."
 
         val textViewIsDead = findViewById<TextView>(R.id.textViewIsDead)
-        textViewIsDead.text = "It means I am working."
+        textViewIsDead.text = "... I know I'm a god of design."
 
         val buttonToWeatherScreen = findViewById<Button>(R.id.btnWeather)
         buttonToWeatherScreen.setOnClickListener {
