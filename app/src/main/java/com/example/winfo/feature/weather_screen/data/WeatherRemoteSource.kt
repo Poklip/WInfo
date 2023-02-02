@@ -1,5 +1,6 @@
 package com.example.winfo.feature.weather_screen.data
 
+import com.example.winfo.cities
 import com.example.winfo.feature.weather_screen.data.model.WeatherRemoteModel
 
 class WeatherRemoteSource(private val api: WeatherApi) {
@@ -7,6 +8,6 @@ class WeatherRemoteSource(private val api: WeatherApi) {
 
     //TODO add query
     suspend fun getWeather(): WeatherRemoteModel {
-        return api.getWeather(query = "Moscow")
+        return api.getWeather(query = cities[1])
     }
 }

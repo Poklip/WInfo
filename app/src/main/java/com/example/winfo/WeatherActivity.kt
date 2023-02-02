@@ -1,8 +1,8 @@
 package com.example.winfo
 //SECOND SCREEN WITH TEMPERATURE INFO
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +11,17 @@ import com.example.winfo.feature.weather_screen.data.WeatherApiClient
 import com.example.winfo.feature.weather_screen.data.WeatherRemoteSource
 import com.example.winfo.feature.weather_screen.data.WeatherRepoImpl
 import com.example.winfo.feature.weather_screen.ui.WeatherScreenPresenter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.math.roundToInt
 
 class WeatherActivity : AppCompatActivity() {
 
     private lateinit var presenter: WeatherScreenPresenter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
@@ -34,7 +38,10 @@ class WeatherActivity : AppCompatActivity() {
         val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
 
         GlobalScope.launch {
-            Log.d("NET", presenter.interactor.getWeather()) //ОНО ПОЛУЧАЕТ ДАННЫЕ ИЗ ИНТЕРНЕТА!!!
+            withContext(Dispatchers.Main) {
+                tvTemperature.text =
+                    "${cities[1]}: ${presenter.getWeather().toDouble().roundToInt() - 273} C"
+            }
         }
 
 
