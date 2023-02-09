@@ -40,7 +40,7 @@ class WeatherActivity : AppCompatActivity() {
         GlobalScope.launch {
             withContext(Dispatchers.Main) {
                 tvTemperature.text =
-                    "${cities[1]}: ${presenter.getWeather().toDouble().roundToInt() - 273} C"
+                    "${currentCity}: ${presenter.getWeather().toDouble().roundToInt() - 273} C"
             }
         }
 
