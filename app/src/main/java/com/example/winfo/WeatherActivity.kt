@@ -6,33 +6,22 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.winfo.feature.weather_screen.WeatherInteractor
-import com.example.winfo.feature.weather_screen.data.WeatherApiClient
-import com.example.winfo.feature.weather_screen.data.WeatherRemoteSource
-import com.example.winfo.feature.weather_screen.data.WeatherRepoImpl
 import com.example.winfo.feature.weather_screen.ui.WeatherScreenPresenter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.inject
 import kotlin.math.roundToInt
 
 class WeatherActivity : AppCompatActivity() {
 
-    private lateinit var presenter: WeatherScreenPresenter
+    private val presenter: WeatherScreenPresenter by inject()
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
-
-        presenter = WeatherScreenPresenter(
-            WeatherInteractor(
-                WeatherRepoImpl(
-                    WeatherRemoteSource(WeatherApiClient.getApi())
-                )
-            )
-        )
 
         var weather = ""
         val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
@@ -43,7 +32,6 @@ class WeatherActivity : AppCompatActivity() {
                     "${currentCity}: ${presenter.getWeather().toDouble().roundToInt() - 273} C"
             }
         }
-
 
         val btnBack = findViewById<Button>(R.id.btnToMain)
         btnBack.setOnClickListener {
