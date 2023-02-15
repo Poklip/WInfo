@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class WeatherMainRemoteModel(
     @SerializedName("temp")
-    val temperature: String
+    val temperature: String,
+    @SerializedName("humidity")
+    val humidity: String
 )

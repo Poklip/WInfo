@@ -6,7 +6,11 @@ import com.example.winfo.feature.weather_screen.data.WeatherRepo
 
 class WeatherInteractor(private val weatherRepo: WeatherRepo) {
 
-    suspend fun getWeather(): String {
+    suspend fun getTemperature(): String {
         return weatherRepo.getTemperature()
+    }
+
+    suspend fun getHumidity(): String {
+        return weatherRepo.getHumidity()
     }
 }

@@ -3,4 +3,6 @@ package com.example.winfo.feature.weather_screen.data
 
 interface WeatherRepo {
     suspend fun getTemperature(): String
+
+    suspend fun getHumidity(): String
 }

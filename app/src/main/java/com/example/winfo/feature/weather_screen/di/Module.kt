@@ -6,8 +6,9 @@ import com.example.winfo.feature.weather_screen.data.WeatherApi
 import com.example.winfo.feature.weather_screen.data.WeatherRemoteSource
 import com.example.winfo.feature.weather_screen.data.WeatherRepo
 import com.example.winfo.feature.weather_screen.data.WeatherRepoImpl
-import com.example.winfo.feature.weather_screen.ui.WeatherScreenPresenter
+import com.example.winfo.feature.weather_screen.ui.WeatherScreenViewModel
 import okhttp3.OkHttpClient
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -36,6 +37,6 @@ val weatherScreenModule = module {
 
     single { WeatherInteractor(get<WeatherRepo>()) }
 
-    single { WeatherScreenPresenter(get<WeatherInteractor>()) }
+    viewModel { WeatherScreenViewModel(get<WeatherInteractor>()) }
 
 }

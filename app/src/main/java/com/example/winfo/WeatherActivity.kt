@@ -6,17 +6,17 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.winfo.feature.weather_screen.ui.WeatherScreenPresenter
+import com.example.winfo.feature.weather_screen.ui.WeatherScreenViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
 
 class WeatherActivity : AppCompatActivity() {
 
-    private val presenter: WeatherScreenPresenter by inject()
+    private val viewModel: WeatherScreenViewModel by viewModel()
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +25,17 @@ class WeatherActivity : AppCompatActivity() {
 
         var weather = ""
         val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
+        var tvHumidity = findViewById<TextView>(R.id.tvHumidity)
 
         GlobalScope.launch {
             withContext(Dispatchers.Main) {
                 tvTemperature.text =
-                    "${currentCity}: ${presenter.getWeather().toDouble().roundToInt() - 273} C"
+                    "${currentCity}: ${viewModel.getTemperature().toDouble().roundToInt() - 273} C."
+                tvHumidity.text =
+                    "Humidity: ${viewModel.getHumidity()} %."
             }
         }
+
 
         val btnBack = findViewById<Button>(R.id.btnToMain)
         btnBack.setOnClickListener {
