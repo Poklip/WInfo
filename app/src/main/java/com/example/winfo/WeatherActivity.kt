@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.winfo.feature.weather_screen.data.WindDirection
 import com.example.winfo.feature.weather_screen.ui.WeatherScreenViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -17,6 +18,7 @@ import kotlin.math.roundToInt
 class WeatherActivity : AppCompatActivity() {
 
     private val viewModel: WeatherScreenViewModel by viewModel()
+    private val windDirection: WindDirection = WindDirection()
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,9 @@ class WeatherActivity : AppCompatActivity() {
 
         var weather = ""
         val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
-        var tvHumidity = findViewById<TextView>(R.id.tvHumidity)
+        val tvHumidity = findViewById<TextView>(R.id.tvHumidity)
+        val tvWindDegree = findViewById<TextView>(R.id.tvWindDegree)
+
 
         GlobalScope.launch {
             withContext(Dispatchers.Main) {
@@ -33,6 +37,12 @@ class WeatherActivity : AppCompatActivity() {
                     "${currentCity}: ${viewModel.getTemperature().toDouble().roundToInt() - 273} C."
                 tvHumidity.text =
                     "Humidity: ${viewModel.getHumidity()} %."
+                tvWindDegree.text =
+                    "Wind is coming from ${
+                        WindDirection().getDirection(
+                            viewModel.getWindDegree().toInt()
+                        )
+                    }."
             }
         }
 

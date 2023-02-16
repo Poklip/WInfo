@@ -2,8 +2,8 @@ package com.example.winfo
 //MAIN SCREEN
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -11,11 +11,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val citiesSpinner = findViewById<Spinner>(R.id.citiesSpinner)
+        val adapter: ArrayAdapter<String> =
+            ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        citiesSpinner.adapter = adapter
+        citiesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO()
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                currentCity = citiesSpinner.selectedItem.toString()
+            }
+
+        }
+
+
         val textViewIsAlive = findViewById<TextView>(R.id.textViewIsAlive)
-        textViewIsAlive.text = "Say no more..."
+        textViewIsAlive.text = "I'm sure it's the next stage of"
 
         val textViewIsDead = findViewById<TextView>(R.id.textViewIsDead)
-        textViewIsDead.text = "... I know I'm a god of design."
+        textViewIsDead.text = "iphone design."
 
         val buttonToWeatherScreen = findViewById<Button>(R.id.btnWeather)
         buttonToWeatherScreen.setOnClickListener {

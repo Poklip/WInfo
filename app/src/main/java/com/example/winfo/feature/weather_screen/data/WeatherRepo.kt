@@ -5,4 +5,6 @@ interface WeatherRepo {
     suspend fun getTemperature(): String
 
     suspend fun getHumidity(): String
+
+    suspend fun getWindDegree(): String
 }

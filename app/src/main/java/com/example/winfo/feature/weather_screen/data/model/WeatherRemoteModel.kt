@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class WeatherRemoteModel(
     @SerializedName("main")
-    val mainWeather: WeatherMainRemoteModel
+    val mainWeather: WeatherMainRemoteModel,
+    @SerializedName("wind")
+    val windInfo: WeatherWindRemoteModel
 )

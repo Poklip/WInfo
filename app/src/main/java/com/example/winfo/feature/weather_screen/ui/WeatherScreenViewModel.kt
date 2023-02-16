@@ -8,4 +8,6 @@ class WeatherScreenViewModel(val interactor: WeatherInteractor) : ViewModel() {
     suspend fun getTemperature(): String = interactor.getTemperature()
 
     suspend fun getHumidity(): String = interactor.getHumidity()
+
+    suspend fun getWindDegree(): String = interactor.getWindDegree()
 }

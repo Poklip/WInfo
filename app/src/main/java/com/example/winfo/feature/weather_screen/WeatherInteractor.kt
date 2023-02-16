@@ -13,4 +13,8 @@ class WeatherInteractor(private val weatherRepo: WeatherRepo) {
     suspend fun getHumidity(): String {
         return weatherRepo.getHumidity()
     }
+
+    suspend fun getWindDegree(): String {
+        return weatherRepo.getWindDegree()
+    }
 }
