@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val textViewIsAlive = findViewById<TextView>(R.id.textViewIsAlive)
-        textViewIsAlive.text = "I'm sure it's the next stage of"
+        textViewIsAlive.text = "Lalalalalala."
 
         val textViewIsDead = findViewById<TextView>(R.id.textViewIsDead)
-        textViewIsDead.text = "iphone design."
+        textViewIsDead.text = "Have a nice day."
 
         val buttonToWeatherScreen = findViewById<Button>(R.id.btnWeather)
         buttonToWeatherScreen.setOnClickListener {
