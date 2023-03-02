@@ -4,52 +4,62 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.winfo.feature.weather_screen.data.WindDirection
+import com.example.winfo.feature.weather_screen.ui.UiEvent
+import com.example.winfo.feature.weather_screen.ui.ViewState
 import com.example.winfo.feature.weather_screen.ui.WeatherScreenViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
 
 class WeatherActivity : AppCompatActivity() {
 
     private val viewModel: WeatherScreenViewModel by viewModel()
-    private val windDirection: WindDirection = WindDirection()
 
-    @SuppressLint("SetTextI18n")
+    private val tvWeather: TextView by lazy { findViewById(R.id.tvTemperature) }
+
+    private val btnBack: Button by lazy { findViewById(R.id.btnToMain) }
+
+    private val fabShowWeather: FloatingActionButton by lazy { findViewById(R.id.fabShowWeather) }
+
+    private val progressBar: ProgressBar by lazy { findViewById(R.id.ProgressBar) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
 
-        var weather = ""
-        val tvTemperature = findViewById<TextView>(R.id.tvTemperature)
-        val tvHumidity = findViewById<TextView>(R.id.tvHumidity)
-        val tvWindDegree = findViewById<TextView>(R.id.tvWindDegree)
 
-
-        GlobalScope.launch {
-            withContext(Dispatchers.Main) {
-                tvTemperature.text =
-                    "${currentCity}: ${viewModel.getTemperature().toDouble().roundToInt() - 273} C."
-                tvHumidity.text =
-                    "Humidity: ${viewModel.getHumidity()} %."
-                tvWindDegree.text =
-                    "Wind is coming from ${
-                        WindDirection().getDirection(
-                            viewModel.getWindDegree().toInt()
-                        )
-                    }."
-            }
+        fabShowWeather.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnButtonClicked)
         }
 
+        viewModel.viewState.observe(this, ::render) //link to function
 
-        val btnBack = findViewById<Button>(R.id.btnToMain)
         btnBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java).also { startActivity(it) }
         }
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun render(viewState: ViewState) {
+        progressBar.isVisible = viewState.isLoading
+        tvWeather.text =
+            "${currentCity}: ${viewState.temperature.toDouble().roundToInt() - 273} C.\n" +
+                    "Humidity: ${viewState.humidity} %.\n" +
+                    "Wind is coming from ${WindDirection().getDirection(viewState.windDirection.toInt())}."
+    }
 }
+
+
+/*GlobalScope.launch {
+    withContext(Dispatchers.Main) {
+        tvWeather.text =
+            "${currentCity}: ${viewModel.getTemperature().toDouble().roundToInt() - 273} C.\n" +
+            "Humidity: ${viewModel.getHumidity()} %.\n" +
+            "Wind is coming from ${WindDirection().getDirection(viewModel.getWindDegree().toInt())}."
+    }
+}*/

@@ -1,5 +1,6 @@
 package com.example.winfo
 //MAIN SCREEN
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 currentCity = citiesSpinner.selectedItem.toString()
             }
-
         }
 
 
