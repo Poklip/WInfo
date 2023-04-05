@@ -1,5 +1,5 @@
 package com.example.winfo
-//SECOND SCREEN WITH TEMPERATURE INFO
+//SECOND SCREEN WITH WEATHER INFO
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -19,13 +19,9 @@ import kotlin.math.roundToInt
 class WeatherActivity : AppCompatActivity() {
 
     private val viewModel: WeatherScreenViewModel by viewModel()
-
     private val tvWeather: TextView by lazy { findViewById(R.id.tvTemperature) }
-
     private val btnBack: Button by lazy { findViewById(R.id.btnToMain) }
-
     private val fabShowWeather: FloatingActionButton by lazy { findViewById(R.id.fabShowWeather) }
-
     private val progressBar: ProgressBar by lazy { findViewById(R.id.ProgressBar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,19 +43,10 @@ class WeatherActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun render(viewState: ViewState) {
         progressBar.isVisible = viewState.isLoading
+        tvWeather.isVisible = viewState.isInfoVisible
         tvWeather.text =
             "${currentCity}: ${viewState.temperature.toDouble().roundToInt() - 273} C.\n" +
                     "Humidity: ${viewState.humidity} %.\n" +
-                    "Wind is coming from ${WindDirection().getDirection(viewState.windDirection.toInt())}."
+                    "  Wind is coming from ${WindDirection().getDirection(viewState.windDirection.toInt())}.  "
     }
 }
-
-
-/*GlobalScope.launch {
-    withContext(Dispatchers.Main) {
-        tvWeather.text =
-            "${currentCity}: ${viewModel.getTemperature().toDouble().roundToInt() - 273} C.\n" +
-            "Humidity: ${viewModel.getHumidity()} %.\n" +
-            "Wind is coming from ${WindDirection().getDirection(viewModel.getWindDegree().toInt())}."
-    }
-}*/

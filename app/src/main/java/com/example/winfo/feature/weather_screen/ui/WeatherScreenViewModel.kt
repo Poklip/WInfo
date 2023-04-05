@@ -8,7 +8,13 @@ import kotlinx.coroutines.launch
 
 class WeatherScreenViewModel(val interactor: WeatherInteractor) : BaseViewModel<ViewState>() {
     override fun initialViewState(): ViewState =
-        ViewState(isLoading = false, temperature = "0", humidity = "", windDirection = "0")
+        ViewState(
+            isInfoVisible = false,
+            isLoading = false,
+            temperature = "0",
+            humidity = "",
+            windDirection = "0"
+        )
 
     override fun reduce(event: MyEvent, previousState: ViewState): ViewState? {
         when (event) {
@@ -29,16 +35,18 @@ class WeatherScreenViewModel(val interactor: WeatherInteractor) : BaseViewModel<
                         }
                     )
                 }
-                return previousState.copy(isLoading = true)
+                return previousState.copy(isInfoVisible = false, isLoading = true)
             }
             is DataEvent.OnWeatherFetchSucceed -> {
                 return previousState.copy(
+                    isInfoVisible = true,
                     isLoading = false,
                     temperature = event.temperature,
                     humidity = event.humidity,
                     windDirection = event.windDirection
                 )
             }
+
 
             else -> return null
         }

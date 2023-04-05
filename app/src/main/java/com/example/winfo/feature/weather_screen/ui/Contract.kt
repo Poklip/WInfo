@@ -3,6 +3,7 @@ package com.example.winfo.feature.weather_screen.ui
 import com.example.winfo.base.MyEvent
 
 data class ViewState(
+    val isInfoVisible: Boolean,
     val isLoading: Boolean,
     val temperature: String,
     val humidity: String,
