@@ -10,8 +10,9 @@ data class ViewState(
     val windDirection: String
 )
 
-sealed class UiEvent() : MyEvent {
+sealed class UiEvent : MyEvent {
     object OnButtonClicked : UiEvent()
+    data class OnCityClicked(val currentCity: String) : UiEvent()
 }
 
 sealed class DataEvent : MyEvent {

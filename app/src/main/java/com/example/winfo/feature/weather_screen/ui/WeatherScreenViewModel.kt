@@ -3,6 +3,7 @@ package com.example.winfo.feature.weather_screen.ui
 import androidx.lifecycle.viewModelScope
 import com.example.winfo.base.BaseViewModel
 import com.example.winfo.base.MyEvent
+import com.example.winfo.currentCity
 import com.example.winfo.feature.weather_screen.WeatherInteractor
 import kotlinx.coroutines.launch
 
@@ -45,6 +46,10 @@ class WeatherScreenViewModel(val interactor: WeatherInteractor) : BaseViewModel<
                     humidity = event.humidity,
                     windDirection = event.windDirection
                 )
+            }
+            is UiEvent.OnCityClicked -> {
+                currentCity = event.currentCity
+                return previousState.copy()
             }
 
 
