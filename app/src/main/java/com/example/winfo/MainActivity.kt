@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val fabShowWeather: FloatingActionButton by lazy { findViewById(R.id.fabShowWeather) }
     private val progressBar: ProgressBar by lazy { findViewById(R.id.ProgressBar) }
     private val citiesSpinner: Spinner by lazy { findViewById(R.id.citiesSpinner) }
+    private val costylBlya = "    \n    "
 
 
     @SuppressLint("SetTextI18n")
@@ -52,9 +53,12 @@ class MainActivity : AppCompatActivity() {
         progressBar.isVisible = viewState.isLoading
         tvWeather.isVisible = viewState.isInfoVisible
         tvWeather.text =
-            "${currentCity}:\n" +
-                    "Temperature: ${viewState.temperature.toDouble().roundToInt() - 273} C.\n" +
-                    "Humidity: ${viewState.humidity} %.\n" +
-                    "Wind direction: ${WindDirection().getDirection(viewState.windDirection.toInt())}."
+            "${costylBlya}${currentCity}:${costylBlya}${costylBlya}Temperature: ${
+                viewState.temperature.toDouble().roundToInt() - 273
+            } C.${costylBlya}Humidity: ${viewState.humidity} %.${costylBlya}Wind direction: ${
+                WindDirection().getDirection(
+                    viewState.windDirection.toInt()
+                )
+            }.${costylBlya}"
     }
 }
