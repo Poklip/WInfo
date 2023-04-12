@@ -1,27 +1,28 @@
 package com.example.winfo.feature.weather_screen.data
 
-val directions = arrayOf(
-    "North",
-    "North-East",
-    "East",
-    "South-East",
-    "South",
-    "South-West",
-    "West",
-    "North-West"
-)
+enum class CurrentDirection(val direction: String) {
+    North("North"),
+    NorthEast("North-East"),
+    East("East"),
+    SouthEast("SouthEast"),
+    South("South"),
+    SouthWest("SouthWest"),
+    West("West"),
+    NorthWest("NorthWest")
+
+}
 
 class WindDirection {
     fun getDirection(degree: Int): String {
         val direction: String = when (degree) {
-            in 23..67 -> directions[1]
-            in 68..102 -> directions[2]
-            in 103..147 -> directions[3]
-            in 148..202 -> directions[4]
-            in 203..247 -> directions[5]
-            in 248..292 -> directions[6]
-            in 293..337 -> directions[7]
-            else -> directions[0]
+            in 23..67 -> CurrentDirection.NorthEast.direction
+            in 68..102 -> CurrentDirection.East.direction
+            in 103..147 -> CurrentDirection.SouthEast.direction
+            in 148..202 -> CurrentDirection.South.direction
+            in 203..247 -> CurrentDirection.SouthWest.direction
+            in 248..292 -> CurrentDirection.West.direction
+            in 293..337 -> CurrentDirection.NorthWest.direction
+            else -> CurrentDirection.North.direction
         }
         return direction
     }
