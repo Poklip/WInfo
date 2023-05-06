@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".MainActivity"
-    android:background="@color/white"
+    android:background="?attr/colorSurfaceMain"
     tools:visibility="visible">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,17 +19,15 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:collapsedTitleTextColor="@color/white"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextColor="@color/white"
+            app:collapsedTitleTextColor="@color/white_80"
+            app:expandedTitleTextColor="@color/white_100"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/weatherPreviewImageView"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_location_city_24" />
+                android:scaleType="centerCrop" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
