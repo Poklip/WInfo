@@ -18,8 +18,7 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:collapsedTitleTextAppearance="@style/MediumText"
-            app:contentScrim="?colorPrimary"
+            app:collapsedTitleTextAppearance="@style/TransparentText"
             app:expandedTitleTextAppearance="@style/BoldText.DescriptionExpandedShadowed"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
