@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     tools:context=".MainActivity"
-    android:background="?attr/colorSurfaceMain"
     tools:visibility="visible">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,8 +18,9 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:collapsedTitleTextColor="@color/white_80"
-            app:expandedTitleTextColor="@color/white_100"
+            app:collapsedTitleTextAppearance="@style/MediumText"
+            app:contentScrim="?colorPrimary"
+            app:expandedTitleTextAppearance="@style/BoldText.DescriptionExpandedShadowed"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -57,7 +57,7 @@
             <Spinner
                 android:id="@+id/citiesSpinner"
                 android:layout_width="180dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_margin="40dp"
                 android:background="@drawable/border"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="images source: google.com"
+                android:text="@string/images_source_google_com"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -104,8 +104,8 @@
         app:layout_constraintBottom_toBottomOf="@id/citiesSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/citiesSpinner"
+        android:contentDescription="@string/show_weather"
         app:layout_constraintTop_toTopOf="@id/citiesSpinner" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WInfo</string>
+    <string name="images_source_google_com">images source: google.com</string>
+    <string name="show_weather">show weather</string>
 </resources>
