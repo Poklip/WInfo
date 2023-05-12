@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
 import com.example.winfo.feature.weather_screen.data.WindDirection
 import com.example.winfo.feature.weather_screen.ui.UiEvent
 import com.example.winfo.feature.weather_screen.ui.ViewState
 import com.example.winfo.feature.weather_screen.ui.WeatherScreenViewModel
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private val fabShowWeather: FloatingActionButton by lazy { findViewById(R.id.fabShowWeather) }
     private val progressBar: ProgressBar by lazy { findViewById(R.id.ProgressBar) }
     private val citiesSpinner: Spinner by lazy { findViewById(R.id.citiesSpinner) }
+    private val collapsingToolbar: CollapsingToolbarLayout by lazy { findViewById(R.id.collapsingToolbar) }
+    private val weatherPreviewImageView: AppCompatImageView by lazy { findViewById(R.id.weatherPreviewImageView) }
+    private val wInfoAppBar: AppBarLayout by lazy { findViewById(R.id.WInfoAppBar) }
     private val costyl = "    \n    "
 
 
@@ -34,6 +41,12 @@ class MainActivity : AppCompatActivity() {
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         citiesSpinner.adapter = adapter
+
+        wInfoAppBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val percent =
+                (abs(appBarLayout.totalScrollRange + verticalOffset).toFloat() / appBarLayout.totalScrollRange)
+            fabShowWeather.alpha = percent
+        })
 
         fabShowWeather.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnButtonClicked)
@@ -49,6 +62,10 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun render(viewState: ViewState) {
+        setCityImage(currentCity, weatherPreviewImageView)
+
+        collapsingToolbar.title = currentCity
+
         progressBar.isVisible = viewState.isLoading
         tvWeather.isVisible = viewState.isInfoVisible
         tvWeather.text =
